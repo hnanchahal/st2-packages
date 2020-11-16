@@ -10,23 +10,18 @@
 Epoch: %{epoch}
 %endif
 
-%if 0%{?rhel} == 7
-Requires: python-devel, openssl-devel, libffi-devel, git, pam, openssh-server, openssh-clients, bash, setup
-%endif
-
 %if 0%{?rhel} >= 8
 %global _build_id_links none
-Requires: python3-devel openssl-devel, libffi-devel, git, pam, openssh-server, openssh-clients, bash, setup
 %endif
+
+Requires: python3-devel openssl-devel, libffi-devel, git, pam, openssh-server, openssh-clients, bash, setup
 
 # EL8 requires a few python packages available within 'BUILDROOT' when outside venv
 # These are in the el8 packagingbuild dockerfile
 # Reference https://fossies.org/linux/ansible/packaging/rpm/ansible.spec
-%if 0%{?rhel} >= 8
 # Will use the python3 stdlib venv
 BuildRequires: python3-devel
 BuildRequires: python3-setuptools
-%endif  # Requires for RHEL 8
 
 Summary: StackStorm all components bundle
 Conflicts: st2common

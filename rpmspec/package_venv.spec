@@ -7,17 +7,10 @@
 %define venv_dir %{buildroot}/%{venv_install_dir}
 %define venv_bin %{venv_dir}/bin
 
-%if 0%{?rhel} == 8
 %define venv_python %{venv_bin}/python3
 %define pin_pip %{venv_python} %{venv_bin}/pip install pip==19.1.1
 %define install_crypto %{venv_python} %{venv_bin}/pip install cryptography==2.8 --no-binary cryptography
 %define install_venvctrl python3 -m pip install venvctrl
-%else
-%define venv_python %{venv_bin}/python
-%define pin_pip %{nil}
-%define install_crypto %{nil}
-%define install_venvctrl %{nil}
-%endif
 
 %define venv_pip %{venv_python} %{venv_bin}/pip install --find-links=%{wheel_dir} --no-index
 
